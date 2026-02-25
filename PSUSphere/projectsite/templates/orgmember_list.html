@@ -38,13 +38,13 @@
 <tr>
 <th scope="col">
     {% with base_params=request.GET.urlencode|default_if_none:'' %}
-    <a href="?{% if base_params %}{{ base_params }}&{% endif %}sort=student{% if request.GET.sort=='student' and request.GET.order!='desc' %}&order=desc{% endif %}">Student</a>
+    <a href="?{% if base_params %}{{ base_params }}&{% endif %}sort=student{% if request.GET.sort == 'student' and request.GET.order != 'desc' %}&order=desc{% endif %}">Student</a>
     {% endwith %}
 </th>
 <th scope="col">Organization</th>
 <th scope="col">
     {% with base_params=request.GET.urlencode|default_if_none:'' %}
-    <a href="?{% if base_params %}{{ base_params }}&{% endif %}sort=date_joined{% if request.GET.sort=='date_joined' and request.GET.order!='desc' %}&order=desc{% endif %}">Date Joined</a>
+    <a href="?{% if base_params %}{{ base_params }}&{% endif %}sort=date_joined{% if request.GET.sort == 'date_joined' and request.GET.order != 'desc' %}&order=desc{% endif %}">Date Joined</a>
     {% endwith %}
 </th>
 <th scope="col">Action</th>
