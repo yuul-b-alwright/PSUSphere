@@ -14,23 +14,42 @@
 </div>
 <br />
 <div class="col-md-12 row">
-<div class="col-md-6">
-<form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'program-list' %}">
-<div class="input-group">
-<input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search ..." class="form-control" />
-<div class="input-group-append">
-<span class="input-group-text">
-<i class="la la-search search-icon"></i>
-</span>
+    <div class="col-md-6">
+        <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'program-list' %}" method="get">
+            <div class="input-group">
+                <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search ..." class="form-control" />
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="la la-search search-icon"></i>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div class="pull-right">
+            <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Program</a>
+        </div>
+    </div>
 </div>
-</div>
-</form>
-</div>
-<div class="col-md-6">
-<div class="pull-right">
-<a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Program</a>
-</div>
-</div>
+<!-- new row for sort controls -->
+<div class="col-md-12 row mt-2">
+    <div class="col-md-6">
+        <form class="form-inline d-flex align-items-center" action="{% url 'program-list' %}" method="get">
+            <input type="hidden" name="q" value="{{ request.GET.q }}" />
+            <div class="mr-2">
+                <select name="sort" class="form-control form-control-sm">
+                    <option value="" {% if not request.GET.sort %}selected{% endif %}>Program</option>
+                    <option value="prog_name" {% if request.GET.sort == 'prog_name' %}selected{% endif %}>Program Name</option>
+                    <option value="college" {% if request.GET.sort == 'college' %}selected{% endif %}>College</option>
+                </select>
+            </div>
+            <div class="mr-2">
+                <button type="submit" class="btn btn-primary btn-sm">Sort</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6"></div>
 </div>
 <div class="card-body">
 <table class="table table-striped mt-3">

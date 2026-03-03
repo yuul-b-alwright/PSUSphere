@@ -111,10 +111,19 @@ class ProgramList(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().select_related('college')
         query = self.request.GET.get('q')
         if query:
             qs = qs.filter(prog_name__icontains=query)
+
+        # sorting
+        sort = self.request.GET.get('sort')
+        # default ascending; remove order dropdown
+        if sort == 'prog_name':
+            qs = qs.order_by('prog_name')
+        elif sort == 'college':
+            qs = qs.order_by('college__college_name')
+
         return qs
 
 
